@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="main">
 <head>
 
   <meta charset="utf-8">
@@ -10,6 +10,15 @@
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
+  <style>
+    body {
+      background-image: url('images/bg_brudgrum_light.jpg');
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .required { color: red; }
+  </style>
 
   <link rel="icon" type="image/png" href="images/favicon.png">
 
@@ -17,19 +26,47 @@
 <body>
 
   <div class="container">
+
     <div class="row">
-      <div class="twelve columns" style="margin-top: 15%">
+      <div class="twelve columns" style="margin-top: 10%">
         <h1 class="u-text-center">Boyle Bingo</h1>
       </div>
     </div>
-    <div class="row">
-      <div class="one-half column" style="margin-top: 5%">
+
+    <div class="row" style="margin-top: 5%">
+
+      <div class="one-half column">
         <h2>Host Game</h2>
-        <p>Be the best Fancy Brugdom you can, host this game.</p>
-        <a class="button button-primary" id="host-game" href="#">Host Game</a>
+        <p>Be the best Fancy Brugdom you can and host a game.</p>
+        <form name="hostForm" ng-controller="MainController as mainCtrl" ng-submit="mainCtrl.createGame(mainCtrl.newGame)">
+          <label for="username">Your name <span class="required">*</span></label>
+          <input type="text" class="u-full-width" placeholder="Pineapples" id="username" ng-model="mainCtrl.newGame.username" required>
+
+          <input class="button-primary" id="hostGame" type="submit" value="Host Game">
+        </form>
       </div>
+
+      <div class="one-half column">
+        <h2>Join Game</h2>
+        <p>Flavour text</p>
+        <form name="joinForm">
+          <label for="lobbyId">Lobby <span class="required">*</span></label>
+          <input class="u-full-width" type="text" placeholder="XYXY" id="lobbyId">
+
+          <label for="username">Your name <span class="required">*</span></label>
+          <input class="u-full-width" type="text" placeholder="Pineapples" id="username">
+
+          <input class="button-primary" type="submit" value="Join Game" id="join-game">
+        </form>
+      </div>
+
     </div>
   </div>
 
+  <script type="text/javascript"
+          src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script type="text/javascript"
+          src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
